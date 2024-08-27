@@ -207,3 +207,5 @@ Backup of *.doc*
 *.sxsch.lck
 design.Out
 design.net
+TMP/
+SIMPLIS_Data/

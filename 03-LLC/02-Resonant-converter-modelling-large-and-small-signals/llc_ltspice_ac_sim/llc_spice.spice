@@ -1,0 +1,51 @@
+* .param Lr = 360n
+* .param Lm = 2.1u
+* .param Cr = 110n
+* .param n = 5
+* .param Cf = 50u
+* .param RL = 1
+* .param Vg = 50
+
+.param Lr = 14u
+.param Lm = 60u
+.param Cr = 30n
+.param n = 4
+*.param Cf = 660u
+.param Cf = 330u
+.param RL = 2.3
+.param Vg = 400
+
+.param F0 = 1/(2*pi*sqrt(Lr*Cr))
+.param Z0 = sqrt(Lr/Cr)
+.param Req = 8* (n**2) * RL/(pi**2)
+.param Qeq = Z0 / Req
+.param fs = 1.01* F0
+.param Omega_s =2*pi*fs
+ 
+.param Xeq = Omega_s*Lr - 1/Omega_s/Cr
+
+.param Ln = Lm/Lr
+.param fn = fs/F0
+
+.param Its = (2*Vg/pi/Req) * Ln * (fn**2) * (Ln + 1 - 1/(fn**2)) / ((fn**2) * ((Ln + 1 - 1/(fn**2))**2) + (Qeq*Ln*((fn**2) -1))**2)
+.param Itc = (2*Vg/pi/Req) * (Ln**2) * fn * Qeq * (1 - (fn**2)) / ((fn**2) * ((Ln + 1 - 1/(fn**2))**2) + (Qeq*Ln*((fn**2) -1))**2)
+
+.param Ims = Itc * Req / Omega_s / Lm
+.param Imc = - Its * Req / Omega_s / Lm
+
+.param Irs = Its + Ims
+.param Irc = Itc + Imc
+
+.param Vrs = Irc / Omega_s / Cr
+.param Vrc = - Irs / Omega_s / Cr
+
+.param ks = (2*n/pi) * Its/sqrt((Its**2) + (Itc**2))
+.param kc = (2*n/pi) * Itc/sqrt(Its**2 + Itc**2)
+
+.param Vo = (pi/4/n) * Req * sqrt(Its**2 + Itc**2)
+
+.param Rs = (4*n*Vo/pi) * (Itc**2) / ((Its**2 + Itc**2)**1.5)
+.param Rc = -(4*n*Vo/pi) * (Its**2) / ((Its**2 + Itc**2)**1.5)
+
+.param krs = -(4*n*Vo/pi) * (Its * Itc) / ((Its**2 + Itc**2)**1.5)
+.param krc = krs
