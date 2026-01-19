@@ -124,11 +124,11 @@ def np_var(bar, series, period):
 
 
 if __name__ == "__main__":
-    list_of_values = [3, 5, 8, 10, 4, 8, 12, 15, 11, 9]
+    list_of_values = [3, 5, 8, 10, 4, 8, 12, 15, 11, 9, 1, 10, 3, 6, 7, 9, 12, 15, 18, 20]
     prev_powersumavg = None
     prev_sma = None
     prev_sma = None
-    period = 3
+    period = 5
     for bar, price in enumerate(list_of_values):
         new_sma = running_sma(bar, list_of_values, period, prev_sma)
         new_powersumavg = powersumavg(bar, list_of_values, period, prev_powersumavg)
